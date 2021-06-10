@@ -5,6 +5,11 @@ const path = require('path');
 const Sockets = require('./sockets');
 const cors = require('cors');
 
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
 class Server {
 
     constructor(){
@@ -15,7 +20,8 @@ class Server {
         this.server = http.createServer(this.app);
 
         // Configuracion de sockets
-        this.io = socketio( this.server, { /* configuraciones */ } );
+        this.io = socketio( this.server, {
+        } );
     }
 
     middlewares () {
